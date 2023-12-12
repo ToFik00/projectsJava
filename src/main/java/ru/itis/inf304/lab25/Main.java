@@ -9,7 +9,7 @@ public class Main {
         int[] array = new int[]{5, 6, 8, 14, 15, 26, 30}; // *Целочисленный отсортированный массив*
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-        int element; //TODO: ВВОД
+        int element;
         try {
             element = Integer.parseInt(bufferedReader.readLine());
             CheckInput.checkInput(element, array);
