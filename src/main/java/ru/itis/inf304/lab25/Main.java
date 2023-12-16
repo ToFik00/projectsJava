@@ -3,6 +3,7 @@ package ru.itis.inf304.lab25;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,11 +18,13 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        int result = array[0]; // Стоит ли добавить проверку, связанную с максимальным числом? (чтобы не проходить весь цикл)
-        // Т.к. мы знаем максимальное число в массиве это кажется выгодным решением для производительности
-        for (int i = 1; i < array.length && array[i] < element; i++) {
-            result = array[i];
-        }
-        System.out.println(result);
+            int result = array[0]; // Стоит ли добавить проверку, связанную с максимальным числом? (чтобы не проходить весь цикл)
+            // Т.к. мы знаем максимальное число в массиве это кажется выгодным решением для производительности
+            for (int i = 1; i < array.length && array[i] < element; i++) {
+                result = array[i];
+            }
+            System.out.println(element + " -> " + result);
+
+
     }
 }
