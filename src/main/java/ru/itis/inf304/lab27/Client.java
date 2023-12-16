@@ -1,11 +1,10 @@
 package ru.itis.inf304.lab27;
 
 public class Client extends Human {
-    Gender gender;
     DiscountCategory discountCategory;
 
     public Client(Gender gender, DiscountCategory discountCategory) {
-        this.gender = gender;
+        super(gender);
         this.discountCategory = discountCategory;
     }
 
