@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) { // TEST
         Queue queue = new Queue();
         Client client1 = new Client(Gender.MALE, DiscountCategory.PENSIONER);
         Client client2 = new Client(Gender.FEMALE, DiscountCategory.STANDARD);

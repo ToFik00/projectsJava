@@ -9,7 +9,7 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void add(T value) {
-        Node<T> node = new Node(value);
+        Node<T> node = new Node<>(value);
         node.next = head; //+
         if (head == null) {
             head = node;

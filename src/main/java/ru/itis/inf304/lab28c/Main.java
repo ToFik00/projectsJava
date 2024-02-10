@@ -18,6 +18,7 @@ public class Main {
         elevatorFreeEmployee.add(new ElevatorEmployee(maximumStage, 1));
 
 
+        // У всех лифтов после вызова будет статус "BUSY"
         System.out.println(elevatorSystem.call(ElevatorType.EMPLOYEE).toString());
 
         System.out.println(elevatorSystem.call(ElevatorType.ODD).toString());
