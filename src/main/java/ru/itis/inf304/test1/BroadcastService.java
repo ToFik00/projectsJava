@@ -37,7 +37,7 @@ public class BroadcastService {
         return programs;
     }
 
-    public List<Program> currentProgramsInChannel(String channel, BroadcastsTime currentTime) {
+    public List<Program> currentProgramsInChannel(String channel, BroadcastsTime currentTime) { // 9.
         List<Program> programsInChannel = channelsWithPrograms.get(channel);
         List<Program> programs = new ArrayList<>();
         for (int i = 0; i < programsInChannel.size() - 1; i++) { // Последнее не узнать, т.к.
