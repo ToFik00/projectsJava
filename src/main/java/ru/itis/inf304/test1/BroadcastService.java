@@ -45,9 +45,11 @@ public class BroadcastService {
                 programs.add(programsInChannel.get(i));
             }
         }
-        if (currentTime.between(programs.get(programsInChannel.size() - 1).getTime(), new BroadcastsTime("06:00")))
+        if (currentTime.between(programs.get(programsInChannel.size() - 1).getTime(), new BroadcastsTime("06:00"))) {
+            programs.add(programsInChannel.get(programsInChannel.size() - 1));
+        }
         //TODO: Программы, которые идут сейчас?
-        return null;
+        return programsInChannel;
     }
 
     public List<Program> getProgramsInRangeTime(BroadcastsTime t1, BroadcastsTime t2) { // 10.
