@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class TrajectorySegmentMetaData {
     private Integer duration;
-    private Double time;
+    private Integer time;
 }

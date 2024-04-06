@@ -6,8 +6,9 @@ import ru.itis.inf304.lab30_json.model.DataBase;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -15,46 +16,80 @@ public class Main {
         ObjectMapper mapper = new ObjectMapper();
         DataBase dataBase = mapper.readValue(new File("transport.json"), DataBase.class);
         Data data = dataBase.getData();
-        System.out.println("tramways names: ");
-        Arrays.stream(data.getVehicles())
-                .filter(vehicle -> vehicle
-                        .getProperties()
-                        .getVehicleMetaData()
-                        .getTransport()
-                        .getType()
-                        .equals("tramway"))
-                .forEach(e -> System.out.println(e.getProperties()
-                        .getVehicleMetaData()
-                        .getTransport()
-                        .getName()));
+        fourthPrint(data);
+        fifthPrint(data);
+        sixthPrint(data);
+    }
 
-        Set<String> setNumberOfBuses = Arrays.stream(data.getVehicles())
-                .filter(vehicle -> vehicle
-                        .getProperties()
-                        .getVehicleMetaData()
-                        .getTransport()
-                        .getType()
-                        .equals("bus"))
+    public static Set<String> types(Data data) {
+        return Arrays.stream(data.getVehicles())
                 .map(e -> e.getProperties()
                         .getVehicleMetaData()
                         .getTransport()
-                        .getName())
-                .collect(Collectors.toSet());
-        System.out.println("setNumberOfBuses: " + setNumberOfBuses);
-        // Что ещё можно сделать из этого файла?
+                        .getType()).collect(Collectors.toSet());
+    }
 
-        String[] ids = Arrays.stream(data.getVehicles())
+    public static int amoutOfType(Data data, String name, String type) {
+        return (int) Arrays.stream(data.getVehicles())
                 .filter(vehicle -> vehicle
                         .getProperties()
                         .getVehicleMetaData()
                         .getTransport()
                         .getName()
-                        .equals("5"))
-                .map(e -> e.getProperties()
+                        .equals(name)
+                        && vehicle
+                        .getProperties()
                         .getVehicleMetaData()
-                        .getId())
-                .toArray(String[]::new);
-        System.out.println("ids: " + Arrays.toString(ids));
+                        .getTransport()
+                        .getType()
+                        .equals(type))
+                .count();
+    }
+
+    public static Map<String, Integer> getMapOfVehicles(Data data) {
+        return Arrays.stream(data.getVehicles())
+                .collect(Collectors.toMap(e -> e.getProperties()
+                        .getVehicleMetaData().getId(), e -> Arrays.stream(e.getFeatures())
+                        .mapToInt(f -> f.getGeometry().getCoordinates().length).sum()));
+    }
+
+    public static void fourthPrint(Data data) {
+        Arrays.stream(data.getVehicles())
+                .sorted(Comparator.comparing(v -> v.getProperties()
+                        .getVehicleMetaData()
+                        .getTransport()
+                        .getName()))
+                .forEach(v -> System.out.println("number: " + v.getProperties()
+                        .getVehicleMetaData()
+                        .getTransport()
+                        .getName() +
+                        ", type: " + v.getProperties()
+                        .getVehicleMetaData()
+                        .getTransport().getType() +
+                        ", id: " + v.getProperties()
+                        .getVehicleMetaData()
+                        .getTransport().getType()));
+
+    }
+
+    public static void fifthPrint(Data data) {
+        Map<String, String[]> map = Arrays.stream(data.getVehicles())
+                .collect(Collectors.toMap(e -> e.getProperties()
+                        .getVehicleMetaData().getId(), e -> Arrays.stream(e.getFeatures())
+                        .map(f -> new SimpleDateFormat("dd.MM.yyyy HH:mm:ss")
+                                .format(Date.from(Instant.ofEpochSecond(f.getProperties()
+                                        .getTrajectorySegmentMetaData()
+                                        .getTime())))).toArray(String[]::new)));
+        System.out.println(map);
+    }
+
+    public static void sixthPrint(Data data) {
+        Arrays.stream(data.getVehicles())
+                .filter(v -> {
+            String type = v.getProperties().getVehicleMetaData().getTransport().getType();
+            return type.equals("tramway") || type.equals("bus") || type.equals("trolleybus");})
+                .forEach(v -> System.out.println(v.getProperties().getVehicleMetaData().getId()));
+
     }
 }
 
