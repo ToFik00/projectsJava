@@ -80,7 +80,7 @@ public class Main {
                                 .format(Date.from(Instant.ofEpochSecond(f.getProperties()
                                         .getTrajectorySegmentMetaData()
                                         .getTime())))).toArray(String[]::new)));
-        System.out.println(map);
+        map.keySet().forEach(e -> System.out.println(e + " " + Arrays.toString(map.get(e))));
     }
 
     public static void sixthPrint(Data data) {
@@ -89,7 +89,6 @@ public class Main {
             String type = v.getProperties().getVehicleMetaData().getTransport().getType();
             return type.equals("tramway") || type.equals("bus") || type.equals("trolleybus");})
                 .forEach(v -> System.out.println(v.getProperties().getVehicleMetaData().getId()));
-
     }
 }
 
