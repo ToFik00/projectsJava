@@ -21,7 +21,7 @@ public class Singletone {
 
     public String read(String path) {
         StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(path)))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             String current;
             while ((current = bufferedReader.readLine()) != null) {
                 stringBuilder.append(current).append("\n");
@@ -33,7 +33,7 @@ public class Singletone {
     }
 
     public void write(String text, String path) {
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
             bw.write(text);
         }
         catch(IOException e) {
