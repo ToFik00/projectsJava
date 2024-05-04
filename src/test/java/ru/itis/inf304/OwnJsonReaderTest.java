@@ -1,11 +1,9 @@
 package ru.itis.inf304;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
-import java.nio.charset.CharacterCodingException;
 import java.nio.charset.MalformedInputException;
 
 import static ru.itis.inf304.lab32_junit.OwnJsonReader.isCorrectBrackets;

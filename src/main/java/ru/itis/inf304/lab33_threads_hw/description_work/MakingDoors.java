@@ -3,22 +3,10 @@ package ru.itis.inf304.lab33_threads_hw.description_work;
 import lombok.Getter;
 
 @Getter
-public class MakingDoors implements Runnable {
-    Thread[] dependencies;
-    private final int days = 7;
+public class MakingDoors extends Work {
 
-    MakingDoors(Thread... threads) {
-        dependencies = threads;
+    public MakingDoors(Thread... threads) {
+        super("Изготовление дверей", 7, threads);
     }
 
-    @Override
-    public void run() { // Изготовление дверей
-        System.out.println("Start [Изготовление дверей]");
-        try {
-            Thread.sleep(1000 * days);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println("End [Изготовление дверей]");
-    }
 }
