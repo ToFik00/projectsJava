@@ -35,8 +35,9 @@ public class PartFile implements Runnable {
 
             k = dis.readInt();
             s = new byte[k];
-            for (int i = 0; i < k; i++)
-                s[i] = dis.readByte();
+            dis.read(s, 0, k);
+            /*for (int i = 0; i < k; i++)
+                s[i] = dis.readByte();*/
             d = dis.readInt();
             p = dis.readInt();
 
