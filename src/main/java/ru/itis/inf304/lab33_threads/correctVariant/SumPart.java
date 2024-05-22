@@ -12,9 +12,6 @@ public class SumPart extends Thread {
         this.b = b;
     }
 
-    /*public double getPartSum() {
-        return commonResource.result;
-    }*/
 
     private Double func(Double x) {
         return Math.sin(x * x);
