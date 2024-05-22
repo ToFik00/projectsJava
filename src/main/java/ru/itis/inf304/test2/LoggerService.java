@@ -8,13 +8,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+
 public class LoggerService {
     @Getter
     private static final Logger logger = Logger.getLogger("logs");
 
     public static void create() {
         try {
-            FileHandler fh = new FileHandler("src/main/resources/v8.log", true);
+            FileHandler fh = new FileHandler("src/main/resources/" + Main.getVariantName() + ".log", true);
             logger.addHandler(fh);
             fh.setFormatter(new SimpleFormatter());
         } catch (SecurityException | IOException e) {

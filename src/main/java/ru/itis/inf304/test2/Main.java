@@ -1,5 +1,7 @@
 package ru.itis.inf304.test2;
 
+import lombok.Getter;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -7,6 +9,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Main {
+    @Getter
+    private static final String variantName = "v8";
     public static void main(String[] args) {
         LoggerService.create();
         PartFile[] parts = new PartFile[0];
@@ -25,6 +29,7 @@ public class Main {
         }
 
         Arrays.sort(parts, Comparator.comparingInt(PartFile::getP));
-        FullFile.collectFiles("V8.txt", parts);
+        FullFile.collectFiles(variantName + ".txt", parts);
     }
+
 }
